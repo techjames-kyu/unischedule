@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Class - UniSchedule</title>
+    <th:block th:replace="~{layout :: styles}"></th:block>
+</head>
+<body>
+    <nav>
+        <a href="/students">Students</a>
+    </nav>
+    <div class="container">
+        <h1>Add Class Entry</h1>
+        <div class="error" th:if="${error}" th:text="${error}"></div>
+        <form th:action="@{/students/{id}/timetable(id=${studentId})}" th:object="${entry}" method="post">
+            <div class="form-group">
+                <label>Subject</label>
+                <input type="text" th:field="*{subject}" required />
+            </div>
+            <div class="form-group">
+                <label>Day of Week</label>
+                <select th:field="*{dayOfWeek}" required>
+                    <option value="MONDAY">Monday</option>
+                    <option value="TUESDAY">Tuesday</option>
+                    <option value="WEDNESDAY">Wednesday</option>
+                    <option value="THURSDAY">Thursday</option>
+                    <option value="FRIDAY">Friday</option>
+                    <option value="SATURDAY">Saturday</option>
+                    <option value="SUNDAY">Sunday</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Start Time</label>
+                <input type="time" th:field="*{startTime}" required />
+            </div>
+            <div class="form-group">
+                <label>End Time</label>
+                <input type="time" th:field="*{endTime}" required />
+            </div>
+            <div class="form-group">
+                <label>Venue</label>
+                <input type="text" th:field="*{venue}" />
+            </div>
+            <button type="submit" class="btn">Save Class</button>
+            <a th:href="@{/students/{id}/timetable(id=${studentId})}" class="btn" style="background:#888;">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reminders - UniSchedule</title>
+    <th:block th:replace="~{layout :: styles}"></th:block>
+</head>
+<body>
+    <nav>
+        <a href="/students">Students</a>
+    </nav>
+    <div class="container">
+        <div class="top-bar">
+            <h1>Reminders</h1>
+            <a th:href="@{/students/{id}/reminders/new(id=${studentId})}" class="btn">+ Add Reminder</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Message</th>
+                    <th>Due</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="reminder : ${reminders}">
+                    <td th:text="${reminder.message}">Message</td>
+                    <td th:text="${reminder.dueDateTime}">Due</td>
+                    <td>
+                        <form th:action="@{/students/{sid}/reminders/{id}/complete(sid=${studentId},id=${reminder.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn">Mark Done</button>
+                        </form>
+                        <form th:action="@{/students/{sid}/reminders/{id}/delete(sid=${studentId},id=${reminder.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

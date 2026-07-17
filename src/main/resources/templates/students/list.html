@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students - UniSchedule</title>
+    <th:block th:replace="~{layout :: styles}"></th:block>
+</head>
+<body>
+    <nav>
+        <a href="/students">Students</a>
+    </nav>
+    <div class="container">
+        <div class="top-bar">
+            <h1>Students</h1>
+            <a href="/students/new" class="btn">+ Add Student</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Registration No.</th>
+                    <th>Course</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.name}">Name</td>
+                    <td th:text="${student.registrationNumber}">Reg No</td>
+                    <td th:text="${student.course}">Course</td>
+                    <td>
+                        <a th:href="@{/students/{id}/timetable(id=${student.id})}" class="btn">Timetable</a>
+                        <a th:href="@{/students/{id}/reminders(id=${student.id})}" class="btn">Reminders</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

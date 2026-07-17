@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Timetable - UniSchedule</title>
+    <th:block th:replace="~{layout :: styles}"></th:block>
+</head>
+<body>
+    <nav>
+        <a href="/students">Students</a>
+    </nav>
+    <div class="container">
+        <div class="top-bar">
+            <h1>Timetable</h1>
+            <a th:href="@{/students/{id}/timetable/new(id=${studentId})}" class="btn">+ Add Class</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Subject</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Venue</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="entry : ${entries}">
+                    <td th:text="${entry.dayOfWeek}">Day</td>
+                    <td th:text="${entry.subject}">Subject</td>
+                    <td th:text="${entry.startTime}">Start</td>
+                    <td th:text="${entry.endTime}">End</td>
+                    <td th:text="${entry.venue}">Venue</td>
+                    <td>
+                        <form th:action="@{/students/{sid}/timetable/{id}/delete(sid=${studentId},id=${entry.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
