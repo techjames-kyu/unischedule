@@ -15,6 +15,10 @@ public class Student {
     @Column(nullable = false)
     private String name;
 
+    @NotBlank(message = "Email is required")
+    @Column(nullable = false)
+    private String email;
+     
     @NotBlank(message = "Registration number is required")
     @Column(nullable = false, unique = true)
     private String registrationNumber;
@@ -25,10 +29,11 @@ public class Student {
     public Student() {
     }
 
-    public Student(String name, String registrationNumber, String course) {
+    public Student(String name, String registrationNumber, String course, String email) {
         this.name = name;
         this.registrationNumber = registrationNumber;
         this.course = course;
+        this.email = email;
     }
 
     // Getters and setters
@@ -50,6 +55,13 @@ public class Student {
 
     public String getRegistrationNumber() {
         return registrationNumber;
+    }
+
+    public String getEmail() {
+    return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setRegistrationNumber(String registrationNumber) {

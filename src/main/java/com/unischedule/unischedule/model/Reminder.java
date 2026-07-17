@@ -33,6 +33,9 @@ public class Reminder {
     @Column(nullable = false)
     private boolean completed = false;
 
+    @Column(nullable = false)
+    private boolean notified = false;
+
     // Constructors
     public Reminder() {
     }
@@ -91,5 +94,13 @@ public class Reminder {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public boolean isNotified() {
+        return notified;
+    }
+
+    public void setNotified(boolean notified) {
+        this.notified = notified;
     }
 }

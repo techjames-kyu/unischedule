@@ -24,6 +24,12 @@
                 <label>Course</label>
                 <input type="text" th:field="*{course}" />
             </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" th:field="*{email}" required />
+            </div>
+            
             <button type="submit" class="btn">Save Student</button>
             <a href="/students" class="btn" style="background:#888;">Cancel</a>
         </form>
